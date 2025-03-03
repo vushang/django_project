@@ -1,6 +1,6 @@
-from django import forms  # Импортируем модуль forms для создания форм Django
-from .models import UserDetail  # Импортируем модель UserDetail, которая хранит доп. информацию о пользователе
-from django.contrib.auth.models import User  # Импортируем встроенную модель User
+from django import forms  
+from .models import UserDetail  
+from django.contrib.auth.models import User  
 
 
 class UserForm(forms.ModelForm):
@@ -10,23 +10,23 @@ class UserForm(forms.ModelForm):
     """
     first_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
-    }))  # Поле для имени пользователя с кастомным стилем
+    }))  
     
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
-    }))  # Поле для фамилии пользователя
+    }))  
     
     username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
-    }))  # Поле для имени пользователя (логина)
+    })) 
     
     email = forms.EmailField(widget=forms.EmailInput(attrs={
         'class': 'form-control',
-    }))  # Поле для email пользователя
+    }))  
 
     class Meta:
-        model = User  # Указываем, что форма связана с моделью User
-        fields = ['first_name', 'last_name', 'username', 'email']  # Список полей, которые будут в форме
+        model = User  
+        fields = ['first_name', 'last_name', 'username', 'email']  
 
 
 class UserDetailForm(forms.ModelForm):
@@ -36,16 +36,16 @@ class UserDetailForm(forms.ModelForm):
     """
     title = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
-    }))  # Поле для заголовка профиля
+    }))  
     
     description = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
-    }))  # Поле для описания профиля
+    }))  
     
     image = forms.ImageField(widget=forms.FileInput(attrs={
         'class': 'form-control'
-    }))  # Поле для загрузки изображения
+    }))  
 
     class Meta:
-        model = UserDetail  # Указываем, что форма связана с моделью UserDetail
-        fields = ['title', 'description', 'image']  # Список полей, которые будут в форме
+        model = UserDetail  
+        fields = ['title', 'description', 'image']  

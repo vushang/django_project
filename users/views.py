@@ -1,19 +1,19 @@
-from django.contrib import messages  # Модуль для работы с уведомлениями
-from django.contrib.auth import authenticate, login, logout  # Функции для аутентификации и выхода
-from django.contrib.auth.forms import PasswordChangeForm  # Форма смены пароля
-from django.contrib.auth.mixins import LoginRequiredMixin  # Миксин для ограничения доступа авторизованным пользователям
-from django.contrib.auth.models import User  # Модель пользователя Django
-from django.contrib.auth.views import PasswordChangeView  # Класс для смены пароля
-from django.db.models import Count  # Функция для подсчета количества объектов в запросе
-from django.http import HttpResponseRedirect  # Класс для редиректа
-from django.shortcuts import render, redirect, get_object_or_404  # Функции рендеринга и получения объекта
-from django.urls import reverse_lazy  # Функция для получения ленивого URL
-from django.views.generic import TemplateView  # Базовый шаблонный класс представления
-from django.views.generic.detail import DetailView  # Класс представления для детального просмотра
-from django.views.generic.list import ListView, MultipleObjectMixin  # Классы представлений списка и поддержки нескольких объектов
+from django.contrib import messages  
+from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth.forms import PasswordChangeForm  
+from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.contrib.auth.models import User  
+from django.contrib.auth.views import PasswordChangeView  
+from django.db.models import Count  
+from django.http import HttpResponseRedirect  
+from django.shortcuts import render, redirect, get_object_or_404  
+from django.urls import reverse_lazy  
+from django.views.generic import TemplateView  
+from django.views.generic.detail import DetailView  
+from django.views.generic.list import ListView, MultipleObjectMixin  
 
-from posts.models import Post, Category, Tag  # Импорт моделей постов, категорий и тегов
-from .forms import UserDetailForm, UserForm  # Импорт пользовательских форм
+from posts.models import Post, Category, Tag 
+from .forms import UserDetailForm, UserForm  
 
 
 # Представление для отображения профиля пользователя

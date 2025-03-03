@@ -1,7 +1,7 @@
-from django.contrib.auth.models import User  # Импорт встроенной модели пользователя Django
-from django.db import models  # Импорт модуля моделей Django
-from django.db.models.signals import post_save  # Импорт сигнала post_save, который срабатывает после сохранения объекта
-from django.dispatch import receiver  # Декоратор для регистрации функций-обработчиков сигналов
+from django.contrib.auth.models import User  
+from django.db import models  
+from django.db.models.signals import post_save  
+from django.dispatch import receiver  
 
 
 # Определяем модель UserDetail, которая хранит дополнительную информацию о пользователе.
@@ -45,7 +45,6 @@ class UserDetail(models.Model):
         """
         instance.userdetail.save()
 
-    # Метод __str__, который возвращает строковое представление объекта.
-    # В данном случае — имя пользователя, к которому относится этот профиль.
+
     def __str__(self):
         return self.user.username

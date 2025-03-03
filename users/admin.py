@@ -1,7 +1,7 @@
-from django.contrib import admin  # Импортируем модуль админки Django
-from .models import UserDetail  # Импортируем модель UserDetail, которую будем регистрировать в админке
+from django.contrib import admin 
+from .models import UserDetail 
 
-# Регистрируем модель UserDetail в админке с кастомными настройками
+
 @admin.register(UserDetail)
 class CustomUserAdmin(admin.ModelAdmin):
     """

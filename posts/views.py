@@ -1,17 +1,17 @@
-from django.contrib import messages  # Импортируем модуль сообщений Django
-from django.contrib.auth.decorators import login_required  # Декоратор для проверки авторизации пользователя
-from django.contrib.auth.mixins import LoginRequiredMixin  # Миксин для классов представлений, требующих авторизации
-from django.core.paginator import Paginator  # Класс для разбивки списка объектов на страницы
-from django.db.models import Count, Q  # Импорт агрегатных функций для работы с базой данных
-from django.http import Http404  # Исключение для обработки отсутствующих страниц
-from django.shortcuts import get_object_or_404, render  # Функции для рендеринга страниц и получения объектов
-from django.template.defaultfilters import slugify  # Фильтр для создания slug (ЧПУ)
-from django.urls import reverse, reverse_lazy  # Функции для генерации URL-адресов
-from django.utils.decorators import method_decorator  # Импорт декоратора для использования в классах
-from django.views.generic.detail import DetailView  # Детальное представление объекта
-from django.views.generic.edit import CreateView, UpdateView, DeleteView  # Классы для CRUD-операций
+from django.contrib import messages  
+from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.mixins import LoginRequiredMixin  
+from django.core.paginator import Paginator  
+from django.db.models import Count, Q  
+from django.http import Http404  
+from django.shortcuts import get_object_or_404, render  
+from django.template.defaultfilters import slugify  
+from django.urls import reverse, reverse_lazy 
+from django.utils.decorators import method_decorator  
+from django.views.generic.detail import DetailView  
+from django.views.generic.edit import CreateView, UpdateView, DeleteView  
 
-from .models import Post, Category, Tag, HitCount, Comment  # Импортируем модели
+from .models import Post, Category, Tag, HitCount, Comment  
 
 
 class CommentView(LoginRequiredMixin, CreateView):

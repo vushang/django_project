@@ -1,14 +1,14 @@
-import random  # Импортируем модуль для работы со случайными числами
-import re  # Импортируем модуль для работы с регулярными выражениями
+import random 
+import re  
 
-from django.contrib import messages  # Модуль для работы с уведомлениями пользователю
-from django.db.models import Count  # Функция для подсчёта количества объектов
-from django.shortcuts import render  # Функция рендеринга HTML-шаблонов
-from django.views.generic.list import ListView  # Класс для создания представления списка объектов
-from django.core.mail import EmailMessage  # Класс для отправки email-сообщений
-from django.conf import settings  # Импорт настроек Django
+from django.contrib import messages  
+from django.db.models import Count  
+from django.shortcuts import render  
+from django.views.generic.list import ListView  
+from django.core.mail import EmailMessage  
+from django.conf import settings  
 
-from posts.models import Post, Category, Tag  # Импортируем модели
+from posts.models import Post, Category, Tag  
 
 
 class LatestPostListView(ListView):

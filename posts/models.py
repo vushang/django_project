@@ -5,20 +5,20 @@ from django.db import models  # Импортируем модуль моделе
 
 # Модель категории постов
 class Category(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Название категории')  # Название категории
-    slug = models.SlugField(unique=True, help_text='Рекомендуется не изменять это вручную.')  # Уникальный slug
+    name = models.CharField(max_length=50, verbose_name='Название категории')  
+    slug = models.SlugField(unique=True, help_text='Рекомендуется не изменять это вручную.')  
 
     def __str__(self):
-        return self.name  # Возвращает название категории в строковом представлении
+        return self.name  
 
 
 # Модель тегов для постов
 class Tag(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Название тега')  # Название тега
-    slug = models.SlugField(unique=True, help_text='Рекомендуется не изменять это вручную.')  # Уникальный slug
+    name = models.CharField(max_length=50, verbose_name='Название тега')  
+    slug = models.SlugField(unique=True, help_text='Рекомендуется не изменять это вручную.')  
 
     def __str__(self):
-        return self.name  # Возвращает название тега в строковом представлении
+        return self.name 
 
 
 # Модель для подсчета просмотров
@@ -26,43 +26,43 @@ class HitCount(models.Model):
     ip = models.CharField(max_length=100)  # Сохраняет IP-адрес пользователей
 
     def __str__(self):
-        return self.ip  # Возвращает IP-адрес в строковом представлении
+        return self.ip  
 
 
 # Модель постов
 class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # Автор поста
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)  # Категория поста
-    tags = models.ManyToManyField(Tag, blank=True, verbose_name='Теги')  # Теги поста
-    views = models.ManyToManyField(HitCount, related_name='post_views', blank=True)  # Количество просмотров
-    title = models.CharField(max_length=75, verbose_name='Заголовок')  # Заголовок поста
-    slug = models.SlugField(unique=True, help_text='Рекомендуется не изменять это вручную.')  # Уникальный slug
-    image = models.ImageField(upload_to='posts/%Y/%m/%d/', verbose_name='Изображение')  # Изображение к посту
-    content = RichTextField(verbose_name='Контент')  # Контент поста с расширенным текстовым редактором
-    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')  # Дата создания поста
-    available = models.BooleanField(default=True, verbose_name='Активный/Неактивный')  # Доступность поста
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)  
+    tags = models.ManyToManyField(Tag, blank=True, verbose_name='Теги')  
+    views = models.ManyToManyField(HitCount, related_name='post_views', blank=True)  
+    title = models.CharField(max_length=75, verbose_name='Заголовок')  
+    slug = models.SlugField(unique=True, help_text='Рекомендуется не изменять это вручную.')  
+    image = models.ImageField(upload_to='posts/%Y/%m/%d/', verbose_name='Изображение')  
+    content = RichTextField(verbose_name='Контент')  
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')  
+    available = models.BooleanField(default=True, verbose_name='Активный/Неактивный')  
 
     def __str__(self):
-        return self.title  # Возвращает заголовок поста в строковом представлении
+        return self.title  
 
     def getHitCount(self):
         """Возвращает количество просмотров поста"""
         return self.views.count()
 
     class Meta:
-        ordering = ['-created']  # Сортировка постов от новых к старым
+        ordering = ['-created']  
 
 
 # Модель комментариев к постам
 class Comment(models.Model):
-    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)  # Пост, к которому относится комментарий
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # Автор комментария
-    content = models.TextField(verbose_name='Комментарий')  # Содержание комментария
-    created = models.DateTimeField(auto_now_add=True)  # Дата создания комментария
-    available = models.BooleanField(default=True, verbose_name='Активный/Неактивный')  # Доступность комментария
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)  
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  
+    content = models.TextField(verbose_name='Комментарий')  
+    created = models.DateTimeField(auto_now_add=True)  
+    available = models.BooleanField(default=True, verbose_name='Активный/Неактивный')  
 
     class Meta:
-        ordering = ['-created']  # Сортировка комментариев от новых к старым
+        ordering = ['-created']  
 
     def __str__(self):
-        return self.author.username + ' | ' + self.post.title  # Возвращает строку вида "Автор | Заголовок поста"
+        return self.author.username + ' | ' + self.post.title  
